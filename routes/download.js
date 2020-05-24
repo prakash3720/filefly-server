@@ -45,12 +45,12 @@ router.get('/file/:id', (req,res)=>{
             res.json({msg:'Invalid id/ id expired'})
           }else{
             let file=files.filter((file)=>{
-                return file._id==req.body.id
+                return file._id==req.params.id
             })
             let filename=file[0].aliases[0]
             filename=filename+"-firefly.zip"
             res.status(200)
-            var readstream = gfs.createReadStream({_id:req.body.id})
+            var readstream = gfs.createReadStream({_id:req.params.id})
             res.set('Content-Type', file[0].contentType)
             res.set('Content-Disposition','attachment; filename="'+ filename + '"');
             res.attachment(filename)
