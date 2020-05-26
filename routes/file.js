@@ -41,7 +41,7 @@ router.get('/info', (req,res)=>{
     gfs.files.find().toArray((err, files)=>{
         try{
           if(err || files.length==0){
-            res.setHeader('Access-Control-Allow-Origin', 'https://filefly-download.herokuapp.com/');
+            res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
             res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
             res.setHeader('Access-Control-Allow-Credentials', true);
@@ -51,7 +51,7 @@ router.get('/info', (req,res)=>{
             let file=files.filter((file)=>{
                 return file._id==req.body.id
             })
-            res.setHeader('Access-Control-Allow-Origin', 'https://filefly-download.herokuapp.com/');
+            res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
             res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
             res.setHeader('Access-Control-Allow-Credentials', true);
@@ -66,7 +66,7 @@ router.get('/info', (req,res)=>{
           }
         }
         catch(err){
-          res.setHeader('Access-Control-Allow-Origin', 'https://filefly-download.herokuapp.com/');
+          res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
           res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
           res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
           res.setHeader('Access-Control-Allow-Credentials', true);
