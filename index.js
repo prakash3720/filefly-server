@@ -13,7 +13,7 @@ const deleteMiddleware=require('./middlewares/delete')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({origin:'https://filefly-send.herokuapp.com'}))
 
 app.use(deleteMiddleware)
 app.use('/upload',upload)
