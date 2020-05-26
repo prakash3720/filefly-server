@@ -22,27 +22,15 @@ router.post('/send',(req,res)=>{
         }
         transporter.sendMail(mailOptions,(err,data)=>{
             if(err){
-                res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
-                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-                res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-                res.setHeader('Access-Control-Allow-Credentials', true);
                 res.status(500)
                 res.json({msg:'Internal server error'})
             }else{
-                res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
-                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-                res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-                res.setHeader('Access-Control-Allow-Credentials', true);
                 res.status(200)
                 res.json({msg:'Mail sent'})
             }
         })
     }
     catch(err){
-        res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-        res.setHeader('Access-Control-Allow-Credentials', true);
         res.status(500)
         res.json({msg:'Internal server error'})
     }
