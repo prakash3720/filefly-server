@@ -13,7 +13,7 @@ let transporter=nodemailer.createTransport({
 
 router.post('/send',(req,res)=>{
     try{
-        let link=`https://filefly-download.herokuapp.com/download/file/${req.body.id}`
+        let link=`http://localhost:5000/download/file/${req.body.id}`
         let mailOptions={
             from:'filefly.send@gmail.com',
             to:req.body.email,
