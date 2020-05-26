@@ -39,6 +39,10 @@ const upload = multer({ storage });
 
 router.post('/new', upload.single('file'), (req,res)=>{
     try{
+      res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com/');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+      res.setHeader('Access-Control-Allow-Credentials', true);
       res.status(200)
       res.json({
           filename:req.file.originalname,
@@ -48,6 +52,10 @@ router.post('/new', upload.single('file'), (req,res)=>{
       })
     }
     catch(err){
+      res.setHeader('Access-Control-Allow-Origin', 'https://filefly-send.herokuapp.com/');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+      res.setHeader('Access-Control-Allow-Credentials', true);
       res.status(500)
       res.json({msg:'Internal server error'})
     }
