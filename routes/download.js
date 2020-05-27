@@ -48,7 +48,7 @@ router.get('/file/:id', (req,res)=>{
                 return file._id==req.params.id
             })
             let filename=file[0].aliases[0]
-            filename=filename+"-firefly.zip"
+            filename=filename+"-filefly.zip"
             res.status(200)
             var readstream = gfs.createReadStream({_id:req.params.id})
             res.set('Content-Type', file[0].contentType)

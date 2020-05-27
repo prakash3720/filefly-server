@@ -37,14 +37,38 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 
-router.post('/new', upload.single('file'), (req,res)=>{
+const nodemailer=require('nodemailer')
+
+let transporter=nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+    user:'filefly.send@gmail.com',
+    pass:'Asdfgh1!'
+  }
+})
+
+router.post('/new/:email', upload.single('file'), (req,res)=>{
     try{
-      res.status(200)
-      res.json({
-          filename:req.file.originalname,
-          id:req.file.id,
-          size:req.file.size,
-          uploadDate:req.file.uploadDate
+      let link=`https://filefly-send.herokuapp.com/download/file/${req.file.id}`
+      let mailOptions={
+          from:'filefly.send@gmail.com',
+          to:req.params.email,
+          subject:'Notification from FileFly',
+          text:`Hi there!\n\nYou have received some files through FileFly. You can download it from here: ${link} \n\nThank you :)`
+      }
+      transporter.sendMail(mailOptions,(err,data)=>{
+        if(err){
+          res.status(500)
+          res.json({msg:'Internal server error'})
+        }else{
+          res.status(200)
+          res.json({
+            filename:req.file.originalname,
+            id:req.file.id,
+            size:req.file.size,
+            uploadDate:req.file.uploadDate
+          })
+        }
       })
     }
     catch(err){
